@@ -1,0 +1,12 @@
+version: '3'
+services:
+  rosLinuxVm:
+    container_name: "ros-ubuntu-focal-os"
+    image: ubuntu:20.04
+    restart: always
+    tty: true
+    ports:
+      - "4000:4000"
+      - "4001:4001"
+    volumes:
+      - /Users/ndukwearmstrong/Humanoid_FUO_AI/ubuntuOS/src:/usr/fuoROS

@@ -1,18 +1,15 @@
 # %%
-import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from greetingData import greetings
 from greetingData import responses
 
 # Set a threshold for cosine similarity
-cosine_similarity_threshold = 0.8  # You can adjust this threshold as needed
+cosine_similarity_threshold = 0.5 # You can adjust this threshold as needed
 
 
 def resolveAIResponse(text):
     # Convert labels to numerical values
-    labels = np.arange(len(responses))
-
     # TF-IDF vectorization
     vectorizer = TfidfVectorizer()
     X = vectorizer.fit_transform(greetings)
@@ -33,13 +30,13 @@ def resolveAIResponse(text):
 
     # Check if the similarity score is below the threshold
     if max_similarity_score < cosine_similarity_threshold:
-        default_response = "I can't really answer that."
+        default_response = "Sorry, I can not really answer that."
         return default_response
     else:
         return response
 
 
-# # Example usage
-# user_input = "How's is the family"
-# response = resolveAIResponse(user_input)
-# print("Response:", response)
+# Example usage
+user_input = "How's is the family"
+response = resolveAIResponse(user_input)
+print("Response:", response)
